@@ -1,17 +1,24 @@
 import React from 'react';
-import { BsTwitter, BsInstagram } from 'react-icons/bs';
-import { FaFacebookF } from 'react-icons/fa';
+import { BsLinkedin, BsInstagram, BsGithub } from 'react-icons/bs';
+import { ImProfile } from 'react-icons/im';
+import resume from '../assets/resume.pdf';
 
 const SocialMedia = () => (
   <div className="app__social">
     <div>
-      <BsTwitter />
+      <a href="https://github.com/hemantso" rel="noreferrer" target="_blank">
+        <BsGithub />
+      </a>
     </div>
     <div>
-      <FaFacebookF />
+      <a href="https://www.linkedin.com/in/hemantso" rel="noreferrer" target="_blank">
+        <BsLinkedin />
+      </a>
     </div>
     <div>
-      <BsInstagram />
+      <a href={resume} rel="noreferrer" target="_blank">
+        <ImProfile />
+      </a>
     </div>
   </div>
 );

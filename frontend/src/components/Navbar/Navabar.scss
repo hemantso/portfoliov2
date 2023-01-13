@@ -21,20 +21,23 @@
   align-items: center;
 
   img {
-    width: 90px;
-    height: 20px;
+    width: 200px;
+    height: 40px;
 
     @media screen and (min-width: 2000px) {
       width: 180px;
       height: 40px;
     }
   }
+  h3{
+    color: var(--gray-color);
+  }
 }
 
 .app__navbar-links {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   list-style: none;

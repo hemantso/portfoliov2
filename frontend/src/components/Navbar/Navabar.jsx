@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
+import resume from '../../assets/resume.pdf';
 import { images } from '../../constants';
 import './Navabar.scss';
 
@@ -11,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-        <img src={images.logo} alt="logo" />
+       <h3>HEMANT👨🏼‍💻SONI</h3>
       </div>
       <ul className="app__navbar-links">
         {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
@@ -20,6 +21,10 @@ const Navbar = () => {
             <a href={`#${item}`}>{item}</a>
           </li>
         ))}
+        <li className="app__flex p-text">
+          <div />
+           <a href={resume} rel="noreferrer" target="_blank">resume</a>
+        </li>
       </ul>
 
       <div className="app__navbar-menu">
