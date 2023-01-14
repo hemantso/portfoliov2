@@ -9,7 +9,7 @@ import './Skills.scss';
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
- console.log(experiences);
+console.log(skills)
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
@@ -34,7 +34,7 @@ const Skills = () => {
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.5 }}
               className="app__skills-item app__flex"
-              key={skill.name}
+              key={skill._id}
             >
               <div
                 className="app__flex"
@@ -59,7 +59,7 @@ const Skills = () => {
                 {experience.works.map((work) => (
                   <>
                     <motion.div
-                      id={work.name}
+                      id={work.company}
                       whileInView={{ opacity: [0, 1] }}
                       transition={{ duration: 0.5 }}
                       className="app__skills-exp-work"
@@ -71,7 +71,8 @@ const Skills = () => {
                       <p className="p-text">{work.company}</p>
                     </motion.div>
                     <Tooltip
-                      anchorId={work.name}
+                      key={work.company}
+                      anchorId={work.company}
                       effect="solid"
                       place="top"
                       arrowColor="#fff"

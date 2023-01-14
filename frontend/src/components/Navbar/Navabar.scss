@@ -31,6 +31,9 @@
   }
   h3{
     color: var(--gray-color);
+    span {
+      color: var(--secondary-color)
+    }
   }
 }
 
