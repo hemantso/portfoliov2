@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Tooltip as ReactTooltip } from 'react-tooltip'
-
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Skills.scss';
@@ -9,7 +9,7 @@ import './Skills.scss';
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
-
+ console.log(experiences);
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
@@ -47,7 +47,7 @@ const Skills = () => {
           ))}
         </motion.div>
         <div className="app__skills-exp">
-          {experiences.map((experience) => (
+          {experiences.sort((a, b) => a._updatedAt < b._updatedAt ? 1 : -1).map((experience) => (
             <motion.div
               className="app__skills-exp-item"
               key={experience.year}
@@ -59,6 +59,7 @@ const Skills = () => {
                 {experience.works.map((work) => (
                   <>
                     <motion.div
+                      id={work.name}
                       whileInView={{ opacity: [0, 1] }}
                       transition={{ duration: 0.5 }}
                       className="app__skills-exp-work"
@@ -69,16 +70,18 @@ const Skills = () => {
                       <h4 className="bold-text">{work.name}</h4>
                       <p className="p-text">{work.company}</p>
                     </motion.div>
-                    <ReactTooltip
-                      id={work.name}
+                    <Tooltip
+                      anchorId={work.name}
                       effect="solid"
+                      place="top"
                       arrowColor="#fff"
                       className="skills-tooltip"
                     >
                       {work.desc}
-                    </ReactTooltip>
+                    </Tooltip>
                   </>
                 ))}
+                
               </motion.div>
             </motion.div>
           ))}
