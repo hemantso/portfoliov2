@@ -1,3 +1,13 @@
+#work {
+
+  // disable the default padding styles
+  .app__wrapper {
+
+    .copyright {
+      display: none;
+    }
+  }
+}
 .app__works {
   flex: 1;
   width: 100%;

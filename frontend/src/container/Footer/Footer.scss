@@ -1,3 +1,10 @@
+#contact {
+  // disable the default padding styles
+  .app__wrapper {
+    padding-bottom: 0;
+    margin-bottom: 1%;
+  }
+}
 .app__footer {
   flex: 1;
   width: 100%;
@@ -32,7 +39,6 @@
     transition: all 0.3s ease-in-out;
 
     img {
-      display: block;
       width: 40px;
       height: 40px;
       margin: 0 0.7rem;

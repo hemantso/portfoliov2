@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Tooltip } from 'react-tooltip'
-import 'react-tooltip/dist/react-tooltip.css'
+import Tooltip from '@material-ui/core/Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
+
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Skills.scss';
 
+const useStyles = makeStyles((theme) => ({
+  customTooltip: {
+    maxWidth: '300px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 0 25px rgba(0, 0, 0, 0.1)',
+    borderRadius: '5px',
+    padding: '1rem',
+    color: '#6b7688',
+    textAlign: 'center',
+    lineHeight: '1.5',
+    opacity: '1',
+    fontSize: "0.75rem",
+  },
+  customArrow: {
+    color: 'rgba(220, 0, 78, 0.8)',
+  },
+}));
+
 const Skills = () => {
+  const classes = useStyles();
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
-console.log(skills)
+
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
@@ -47,45 +67,47 @@ console.log(skills)
           ))}
         </motion.div>
         <div className="app__skills-exp">
-          {experiences.sort((a, b) => a._updatedAt < b._updatedAt ? 1 : -1).map((experience) => (
-            <motion.div
-              className="app__skills-exp-item"
-              key={experience.year}
-            >
-              <div className="app__skills-exp-year">
-                <p className="bold-text">{experience.year}</p>
-              </div>
-              <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
-                  <>
-                    <motion.div
-                      id={work.company}
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className="app__skills-exp-work"
-                      data-tip
-                      data-for={work.name}
-                      key={work.name}
-                    >
-                      <h4 className="bold-text">{work.name}</h4>
-                      <p className="p-text">{work.company}</p>
-                    </motion.div>
-                    <Tooltip
-                      key={work.company}
-                      anchorId={work.company}
-                      effect="solid"
-                      place="top"
-                      arrowColor="#fff"
-                      className="skills-tooltip"
-                    >
-                      {work.desc}
-                    </Tooltip>
-                  </>
-                ))}
-                
+          {experiences
+            .sort((a, b) => (a._updatedAt < b._updatedAt ? 1 : -1))
+            .map((experience) => (
+              <motion.div
+                className="app__skills-exp-item"
+                key={experience.year}
+              >
+                <div className="app__skills-exp-year">
+                  <p className="bold-text">{experience.year}</p>
+                </div>
+                <motion.div className="app__skills-exp-works">
+                  {experience.works.map((work) => (
+                    <>
+                      <motion.div
+                        id={work.company}
+                        whileInView={{ opacity: [0, 1] }}
+                        transition={{ duration: 0.5 }}
+                        className="app__skills-exp-work"
+                        data-tip
+                        data-for={work.name}
+                        key={work.name}
+                      >
+                        <Tooltip
+                          classes={{
+                            tooltip: classes.customTooltip,
+                          }}
+                          title={work.desc}
+                          placement="top-start"
+                        >
+                          <div>
+                          <h4 className="bold-text">{work.name}</h4>
+                          <p className="p-text">{work.company}</p>
+                          </div>
+                          
+                        </Tooltip>
+                      </motion.div>
+                    </>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
         </div>
       </div>
     </>
@@ -95,5 +117,5 @@ console.log(skills)
 export default AppWrap(
   MotionWrap(Skills, 'app__skills'),
   'skills',
-  'app__whitebg',
+  'app__whitebg'
 );

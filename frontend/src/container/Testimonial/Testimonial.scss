@@ -1,3 +1,11 @@
+#testimonial {
+  // disable the default padding styles
+  .app__wrapper {
+    .copyright {
+      display: none;
+    }
+  }
+}
 .app__testimonial {
   flex: 1;
   width: 100%;

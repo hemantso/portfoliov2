@@ -3,6 +3,9 @@
   font-family: var(--font-base);
 }
 
+#forest-ext-shadow-host {
+  display: none;
+}
 .app__whitebg {
   background-color: var(--white-color);
 }
@@ -13,7 +16,7 @@
 
 .app__container {
   width: 100%;
-  min-height: 70vh;
+  min-height: 50vh;
 
   display: flex;
   flex-direction: row;
